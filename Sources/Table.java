@@ -92,7 +92,7 @@ public class Table extends JFrame implements ActionListener {
 	// When two Virtual Player's , calls this to automatically play the game
 	public void TwoVP(){
 
-		System.out.println("TwoVP Called");
+		// System.out.println("TwoVP Called");
 
 		while (p1Hand.getNumberOfCards() > 0 && p2Hand.getNumberOfCards() > 0 && !cardDeck.isEmpty() ){
 
@@ -148,6 +148,7 @@ public class Table extends JFrame implements ActionListener {
 	public Table() {
 		
 		super("The Card Game of the Century");
+		// System.out.println("Welcome to Rummy!!!");
 
 		// Variable mas chiquitas porfis
 		// Gets the Number of Players in the Current Session of The Rummy Game
@@ -244,9 +245,9 @@ public class Table extends JFrame implements ActionListener {
 		p1FinishTurn.addActionListener(this);
 
 		// Action listeners for Play sets
-		p1PlaySet = new JButton("Play Runs");
+		p1PlaySet = new JButton("Play Melds");
 		p1PlaySet.addActionListener(this);
-		p2PlaySet = new JButton("Play Runs");
+		p2PlaySet = new JButton("Play Melds");
 		p2PlaySet.addActionListener(this);
 
 		Card [] cardsPlayer1 = new Card[numDealtCards];
@@ -384,23 +385,23 @@ public class Table extends JFrame implements ActionListener {
 	// i.e hand / deck are empty
 	public void Gameover() {
 
-		System.out.println("Game has ended!");
+		System.out.println("GAME HAS ENDED!");
 		int p1 = p1Hand.evaluateHand();
 		int p2 = p2Hand.evaluateHand();
 
 
-		System.out.println("Player 1 Total Points: " + p1);
-		System.out.println("Player 2 Total Points: " + p2);
+		System.out.println("PLAYER 1 TOTAL POINTS: " + p1);
+		System.out.println("PLAYER 2 TOTAL POINTS: " + p2);
 
 		if (p1 > p2){
-			System.out.println("Player 2 won!");
+			System.out.println("PLAYER 2 WON");
 		}
 
 		else if (p2 > p1){
-			System.out.println("Player 1 won!");
+			System.out.println("PLAYER 1 WON");
 		}
 		else {
-			System.out.println("It is a tie!");
+			System.out.println("IT IS A TIE!");
 		}
 
 		// Terminate the program
@@ -439,9 +440,6 @@ public class Table extends JFrame implements ActionListener {
 
 	// Changes the player turn active buttons
 	private void changePlayerActionButtons(){
-
-		System.out.println("changePlayerActionButtons");
-		System.out.println( p1Turn ? "Player 1's turn! " : "Player 2's turn!");
 
 		if (p1Turn){
 			p1Stack.setEnabled( true );
@@ -547,9 +545,7 @@ public class Table extends JFrame implements ActionListener {
 	// and ends the game.
 	private void ActionLay(Hand player, JList<Card> handPile){
 
-		if (player.isEmpty()) Gameover();
 		List<Card> cards = handPile.getSelectedValuesList();
-
 		
 		if (cards.isEmpty()) return;
 
@@ -656,29 +652,44 @@ public class Table extends JFrame implements ActionListener {
 
 	// Evaluates by Suits
 	// Similarly to ActionPlayRuns, evaluates the two hands by suits.
-	private void ActionPlayMelds(){
+	private void ActionPlayMelds(Hand player, JList<Card> handPile){
 
-		System.out.println("Game has ended!");
-		int p1 = p1Hand.evaluateMelds();
-		int p2 = p2Hand.evaluateMelds();
+		
+		List<Card> cards = handPile.getSelectedValuesList();
+		if (cards.isEmpty()) return;
 
+		if (cards.size() > 3 && cards.size() < 5){
 
-		System.out.println("Player 1 Total Points: " + p1);
-		System.out.println("Player 2 Total Points: " + p2);
+			boolean valid = true;
+			Card card = cards.get(0);
+			char rankCard = card.getRank();
 
-		if (p1 > p2){
-			System.out.println("Player 2 won!");
+			for (int i = 0; i < cards.size(); i++){
+
+				if (rankCard != cards.get(i).getSuit()){
+					System.out.println("ALL CARDS MUST BE SAME SUIT FOR THIS ACTION");
+					return;
+				}
+				addedCards.addElement(cards.get(i));
+			}
+
+			if (valid){
+				ActionPlayRuns();
+			}
+		}
+		
+		for (int i = 0; i < cards.size(); i++) { 
+
+			Card card = cards.get(i);
+			layCard(card);
+
+			discardedCards.addElement(card);
+			player.removeCard(card);
 		}
 
-		else if (p2 > p1){
-			System.out.println("Player 1 won!");
-		}
-		else {
-			System.out.println("It is a tie!");
-		}
+		printCards();
 
-		// Terminate the program
-		System.exit(0);
+		if (player.isEmpty()) Gameover();
 	}
 
 	// Where the Virtual Player(s) decision progress takes place.
@@ -730,7 +741,6 @@ public class Table extends JFrame implements ActionListener {
 			if (src == p2Deck && p2Hand.getNumberOfCards() < 10 ){
 				ActionDrawFromDeck(p2Hand);
 			}
-
 		}
 
 
@@ -744,7 +754,6 @@ public class Table extends JFrame implements ActionListener {
 			if (src == p2Stack && p2Hand.getNumberOfCards() < 10 ){
 				ActionDrawFromStack(p2Hand);
 			}
-
 		}
 
 		// Lay Actions
@@ -759,6 +768,7 @@ public class Table extends JFrame implements ActionListener {
 			}
 		}
 
+
 		if (p1LayOnStack == src || p2LayOnStack == src){
 
 			if (p1LayOnStack == src){
@@ -768,23 +778,22 @@ public class Table extends JFrame implements ActionListener {
 			if (src == p2LayOnStack){
 				ActionLayOnStack(p2Hand, p2HandPile);
 			}
-
 		}
+
 
 		if (p1FinishTurn == src || p2FinishTurn == src) {
 
 
 			if (VirtualPlayers == 1){
-				System.out.println("VT");
+				// System.out.println("VT");
 				ChangePlayerTurn();
 				Virtualized(p2Hand);
 				printCards();
 				ChangePlayerTurn();
 			} else {
-				System.out.println("NVT");
+				// System.out.println("NVT");
 				ChangePlayerTurn();
 			}
-
 		} // EO
 
 	

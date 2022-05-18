@@ -15,7 +15,7 @@ The project is organized in two separate directories, Interfaces and Sources...
         javac -d . Proj2.java
         java Proj2
 
-
+    or simply:   javac -d . Proj2.java  &&  java Proj2
 
 
     How it works:
