@@ -151,23 +151,27 @@ public class Table extends JFrame implements ActionListener {
 		super("The Card Game of the Century");
 
 		// Variable mas chiquitas porfis
-		Scanner GetNumberOfPlayersInTheCurrentSessionOfTheRummyGame = new Scanner(System.in);
-		boolean ValidateNumberOfPlayersInTheCurrentSessionOfTheRummyGame = false;
+		// Gets the Number of Players in the Current Session of The Rummy Game
+		Scanner numOfPlayers = new Scanner(System.in);
+		// Validates the Number of Players in the Current Session of The Rummy Game
+		boolean validate = false;
 
 
-		while( !ValidateNumberOfPlayersInTheCurrentSessionOfTheRummyGame ){
+		while( !validate ){
 
 			System.out.println("Input the number of AI players: [0,1,2] ");
-			VirtualPlayers = GetNumberOfPlayersInTheCurrentSessionOfTheRummyGame.nextInt();
+			VirtualPlayers = numOfPlayers.nextInt();
 			System.out.println(" ");
 
 			if (VirtualPlayers < 0 || VirtualPlayers > 2){
-				ValidateNumberOfPlayersInTheCurrentSessionOfTheRummyGame = false;
+				validate = false;
 				VirtualPlayers = 0;
 			} else {
-				ValidateNumberOfPlayersInTheCurrentSessionOfTheRummyGame = true;
+				validate = true;
 			}
 		}
+
+		numOfPlayers.close();
 
 
 		setLayout(new BorderLayout());
