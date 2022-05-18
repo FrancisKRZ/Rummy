@@ -2,8 +2,9 @@
 // last modified: 23 Febraury 2004
 // Implementation of a playing card.  Uses classes Rank and Suit for
 // expressing the card value.
-// import Interfaces.*;
+package Sources;
 
+import Interfaces.*;
 import javax.swing.*;
 
 /**

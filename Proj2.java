@@ -1,5 +1,9 @@
 // Francisco J. Melendez Laureano
 // CCOM-4029 : Java Project 2 (Rummy Card Game)
+import Interfaces.*;
+import Sources.*;
+
+import Sources.Table;
 
 // Can be used to play test individual Objects
 public class Proj2 {

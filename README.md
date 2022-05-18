@@ -9,12 +9,16 @@
 Documenting All Sources, Helped Received (if any) and Design Choices.
 
 
-                        - How to run the project
-                        - Run in terminal:
-                                Compile:  javac *.java
-                                Run:      java Proj2
+The project is organized in two separate directories, Interfaces and Sources...
+
+    How to compile & run:
+        javac -d . Proj2.java
+        java Proj2
 
 
+
+
+    How it works:
 User will be asked to provide the number of virtual player(s)
 It shall run the Table with the appropiate amount of virtualized players.
 The Virtual Players follow a basic algorithm:

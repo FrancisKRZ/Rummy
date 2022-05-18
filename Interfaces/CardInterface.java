@@ -1,5 +1,7 @@
-// package Interfaces;
+package Interfaces;
 
+import Interfaces.*;
+import Sources.*;
 import javax.swing.*;
 
 

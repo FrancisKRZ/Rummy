@@ -1,4 +1,6 @@
-// package Interfaces;
+package Interfaces;
+import Interfaces.*;
+import Sources.*;
 
 public interface SetInterface extends HandInterface {
 	/*

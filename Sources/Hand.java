@@ -1,3 +1,7 @@
+package Sources;
+
+import Interfaces.*;
+import javax.swing.*;
 
 // Hand.java - John K. Estell - 8 May 2003
 // last modified: 23 Febraury 2004
@@ -5,12 +9,8 @@
 // Uses the Card class.  Requires subclass for specifying
 // the specifics of what constitutes the evaluation of a hand
 // for the game being implemented.
-// import Interfaces.*;
-
-import javax.swing.*;
 
 
-// Hello, World
 /**
  * Represents the basic functionality of a hand of cards.
  * Extensions of this class will provide the

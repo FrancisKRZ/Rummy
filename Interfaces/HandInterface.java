@@ -1,4 +1,7 @@
-// package Interfaces;
+package Interfaces;
+import Interfaces.*;
+import Sources.*;
+
 /**
  * Represents the basic functionality of a hand of cards.
  * Extensions of this class will provide the

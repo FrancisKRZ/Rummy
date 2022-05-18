@@ -1,7 +1,6 @@
-// package Sources;
+package Sources;
 
-
-// import Interfaces.*;
+import Interfaces.*;
 
 /**
 *	This GUI assumes that you are using a 52 card deck and that you have 13 sets in the deck.
@@ -647,8 +646,6 @@ public class Table extends JFrame implements ActionListener {
 		discardedCards.addElement(card);
 		// printCards();
 	}
-
-
 
 
 	// Evaluates by Rank
