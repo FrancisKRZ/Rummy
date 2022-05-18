@@ -18,7 +18,7 @@ The project is organized in two separate directories, Interfaces and Sources...
     or simply:   javac -d . Proj2.java  &&  java Proj2
 
 
-    How it works:
+How it works:
 User will be asked to provide the number of virtual player(s)
 It shall run the Table with the appropiate amount of virtualized players.
 The Virtual Players follow a basic algorithm:
@@ -30,7 +30,7 @@ winner is chosen by player who's hand is lesser in rank value than the opponent'
 
 
 
-Guides used:
+    Guides used:
 
     - Java Util Package Documentation:
     https://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html
@@ -50,10 +50,10 @@ Guides used:
 
 
 Design Choices:
-    
-    - Behavioral / Observer:
-    Call to Main class creates Table, which calls upon the other Classes,
-    utilizes Java Utility ADTs (List) and its methods. Reflects changes cross object-wise.
+
+- Behavioral / Observer:
+Call to Main class creates Table, which calls upon the other Classes,
+utilizes Java Utility ADTs (List) and its methods. Reflects changes cross object-wise.
 
 
     Main Class
