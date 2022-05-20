@@ -653,6 +653,34 @@ public class Table extends JFrame implements ActionListener {
 		Gameover();
 	}
 
+
+	private void PlayMelds(){
+
+		System.out.println("GAME HAS ENDED!");
+		int p1 = p1Hand.evaluateMelds();
+		int p2 = p2Hand.evaluateMelds();
+
+
+		System.out.println("PLAYER 1 TOTAL POINTS: " + p1);
+		System.out.println("PLAYER 2 TOTAL POINTS: " + p2);
+
+		if (p1 > p2){
+			System.out.println("PLAYER 2 WON");
+		}
+
+		else if (p2 > p1){
+			System.out.println("PLAYER 1 WON");
+		}
+		else {
+			System.out.println("IT IS A TIE!");
+		}
+
+		// Terminate the program
+		System.exit(0);
+
+	}
+
+
 	// Evaluates by Suits
 	// Similarly to ActionPlayRuns, evaluates the two hands by suits.
 	private void ActionPlayMelds(Hand player, JList<Card> handPile){
@@ -665,11 +693,11 @@ public class Table extends JFrame implements ActionListener {
 
 			boolean valid = true;
 			Card card = cards.get(0);
-			char rankCard = card.getRank();
+			char suitCard = card.getSuit();
 
 			for (int i = 0; i < cards.size(); i++){
 
-				if (rankCard != cards.get(i).getSuit()){
+				if (suitCard != cards.get(i).getSuit()){
 					System.out.println("ALL CARDS MUST BE SAME SUIT FOR THIS ACTION");
 					return;
 				}
@@ -677,7 +705,7 @@ public class Table extends JFrame implements ActionListener {
 			}
 
 			if (valid){
-				ActionPlayRuns();
+				PlayMelds();
 			}
 		}
 		
@@ -792,6 +820,18 @@ public class Table extends JFrame implements ActionListener {
 			}
 		}
 
+		if (p1PlaySet == src || p2PlaySet == src){
+
+			if (p1PlaySet == src){
+				ActionPlayMelds(p1Hand, p1HandPile);
+			}
+		
+			if (p2PlaySet == src){
+				ActionPlayMelds(p2Hand, p2HandPile);
+			}
+
+		}
+
 
 		if (p1FinishTurn == src || p2FinishTurn == src) {
 
@@ -808,7 +848,6 @@ public class Table extends JFrame implements ActionListener {
 
 
 			if (VirtualPlayers == 1){
-				// System.out.println("VT");
 				PrintPlayerTurn();
 				Virtualized(p2Hand);
 				printCards();
@@ -816,10 +855,7 @@ public class Table extends JFrame implements ActionListener {
 				p2Deck.setEnabled(true);
 				PrintPlayerTurn();
 			} else {
-				// System.out.println("NVT");
 				PrintPlayerTurn();
-				// disableP1();
-				// enableP2();
 			}
 		} // EO
 
@@ -868,8 +904,8 @@ class HandPanel extends JPanel {
 		layOnStack.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(layOnStack);
 
-		// playSet.setAlignmentX(Component.CENTER_ALIGNMENT);
-		// add(playSet);
+		playSet.setAlignmentX(Component.CENTER_ALIGNMENT);
+		add(playSet);
 
 		FinishTurn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(FinishTurn);
