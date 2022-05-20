@@ -1,0 +1,74 @@
+Hello, World!
+Welcome to Rummy
+Input the number of AI players: [0,1,2] 
+ 
+INITIAL PLAYER 1: [5C, TC, 4D, 8D, 9D, 2H, 6S, 8S, KS]
+INITIAL PLAYER 2: [3C, 8C, JC, KC, 3H, TH, 3S, 5S, 9S]
+PLAYER 1:
+ADDED: [4S]
+DISCARDED: [5C, TC]
+HAND NOW: [4d, 8d, 9d, 2h, 4s, 6s, 8s, ks]
+PLAYER 2:
+ADDED: [QD]
+DISCARDED: [3C, 8C]
+HAND NOW: [jc, kc, qd, 3h, th, 3s, 5s, 9s]
+PLAYER 1:
+ADDED: [JD]
+DISCARDED: [4D, 8D]
+HAND NOW: [9d, jd, 2h, 4s, 6s, 8s, ks]
+PLAYER 2:
+ADDED: [TD]
+DISCARDED: [JC, KC]
+HAND NOW: [qd, td, 3h, th, 3s, 5s, 9s]
+PLAYER 1:
+ADDED: [6C]
+DISCARDED: [9D, 6C]
+HAND NOW: [jd, 2h, 4s, 6s, 8s, ks]
+PLAYER 2:
+ADDED: [KD]
+DISCARDED: [QD, KD]
+HAND NOW: [td, 3h, th, 3s, 5s, 9s]
+PLAYER 1:
+ADDED: [AC]
+DISCARDED: [JD, AC]
+HAND NOW: [2h, 4s, 6s, 8s, ks]
+PLAYER 2:
+ADDED: [6H]
+DISCARDED: [TD, 3H]
+HAND NOW: [6h, th, 3s, 5s, 9s]
+PLAYER 1:
+ADDED: [AS]
+DISCARDED: [2H, 4S]
+HAND NOW: [6s, 8s, as, ks]
+PLAYER 2:
+ADDED: [5D]
+DISCARDED: [6H, 5D]
+HAND NOW: [th, 3s, 5s, 9s]
+PLAYER 1:
+ADDED: [7H]
+DISCARDED: [6S, 7H]
+HAND NOW: [8s, as, ks]
+PLAYER 2:
+ADDED: [5H]
+DISCARDED: [TH, 5H]
+HAND NOW: [3s, 5s, 9s]
+PLAYER 1:
+ADDED: [7D]
+DISCARDED: [8S, 7D]
+HAND NOW: [as, ks]
+PLAYER 2:
+ADDED: [7C]
+DISCARDED: [3S, 7C]
+HAND NOW: [5s, 9s]
+PLAYER 1:
+ADDED: [4H]
+DISCARDED: [AS, 4H]
+HAND NOW: [ks]
+PLAYER 2:
+ADDED: [TS]
+DISCARDED: [5S, 9S]
+HAND NOW: [ts]
+GAME HAS ENDED!
+PLAYER 1 TOTAL POINTS: 10
+PLAYER 2 TOTAL POINTS: 10
+IT IS A TIE!
