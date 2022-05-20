@@ -378,6 +378,13 @@ public class Table extends JFrame implements ActionListener {
 		else
 			topOfStack.setIcon( new ImageIcon(Card.directory + "blank.gif") );
 
+
+
+		disableP1();
+		p1Deck.setEnabled(true);
+		disableP2();
+		p2Deck.setEnabled(false);
+
 	}
 
 
@@ -421,7 +428,7 @@ public class Table extends JFrame implements ActionListener {
 	}
 
 	// Announces the player turn ending
-	private void ChangePlayerTurn(){
+	private void PrintPlayerTurn(){
 		
 		if(p1Turn){
 			System.out.println("PLAYER 1 ");
@@ -439,48 +446,60 @@ public class Table extends JFrame implements ActionListener {
 	}
 
 	// Changes the player turn active buttons
-	private void changePlayerActionButtons(){
+	private void enableP1(){
 
-		if (p1Turn){
-			p1Stack.setEnabled( true );
-			p1Deck.setEnabled(true);
-			p1Lay.setEnabled(true);
-			p1LayOnStack.setEnabled( !stackDeck.isEmpty() );
-			p1PlaySet.setEnabled(true);
+		p1Deck.setEnabled(false);
+		p1Stack.setEnabled(( !stackDeck.isEmpty() ));
 
-
-			p2Stack.setEnabled( false );
-			p2Deck.setEnabled(false );
-			p2Lay.setEnabled(true);
-			p2LayOnStack.setEnabled(false );
-			p2PlaySet.setEnabled(false );
-
-		} else {
-			p2Stack.setEnabled( !stackDeck.isEmpty() );
-			p2Deck.setEnabled(true );
-			p2Lay.setEnabled(true );
-			p2LayOnStack.setEnabled(true);
-			p2PlaySet.setEnabled(true);
-
-			p1Stack.setEnabled( false );
-			p1Deck.setEnabled(false);
-			p1Lay.setEnabled(false);
-			p1LayOnStack.setEnabled(false);
-			p1PlaySet.setEnabled(false);
-		}
+		p1Lay.setEnabled(true);
+		p1LayOnStack.setEnabled( true);
+		p1PlaySet.setEnabled(true);
 
 		return;
 	}
+
+	private void disableP1(){
+
+		p1Deck.setEnabled(false);
+		p1Stack.setEnabled(false);
+
+		p1Lay.setEnabled(false);
+		p1LayOnStack.setEnabled(false);
+		p1PlaySet.setEnabled(false);
+
+		return;
+	}
+
+	private void enableP2(){
+
+		p2Deck.setEnabled(false);
+		p2Stack.setEnabled(( !stackDeck.isEmpty() ));
+
+		p2Lay.setEnabled(true);
+		p2LayOnStack.setEnabled( true);
+		p2PlaySet.setEnabled(true);
+
+		return;
+	}
+
+	private void disableP2(){
+
+		p2Deck.setEnabled(false);
+		p2Stack.setEnabled(false);
+
+		p2Lay.setEnabled(false);
+		p2LayOnStack.setEnabled(false);
+		p2PlaySet.setEnabled(false);
+
+		return;
+	}
+
 
 
 	// Player Draw from Decks
 	// Given a Hand (i.e p1Hand)
 	// Picks a card from the deck after evaluating certain conditions
 	private void ActionDrawFromDeck(Hand player){
-
-		// ChangePlayerTurn();
-		// changePlayerActionButtons();
-		// System.out.println("ActionDrawFromDeck");
 
 		if (player.getNumberOfCards() > 10){
 			System.out.println("TOO MANY CARDS D: ");
@@ -493,13 +512,10 @@ public class Table extends JFrame implements ActionListener {
 			return;
 		}
 
-		//System.out.println("Pasando por deck");
 
 		addedCards.addElement(card);
 		player.addCard(card);
 
-		// System.out.println("\tADDED: " + card.toString().toUpperCase());
-		printCards();
 
 		if (cardDeck.isEmpty()){
 			deckPile.setIcon(new ImageIcon(Card.directory + "blank.gif"));
@@ -512,10 +528,6 @@ public class Table extends JFrame implements ActionListener {
 	// Given a hand (i.e p1Hand)
 	// Picks a card from the stack after evaluating certain conditions
 	private void ActionDrawFromStack(Hand player){
-
-		ChangePlayerTurn();
-		// changePlayerActionButtons();
-		// System.out.println("ActionDrawFromStack");
 
 		if (player.getNumberOfCards() >= 10 || stackDeck.isEmpty() ){
 			System.out.println("TOO MANY CARDS D: OR EMPTY D:");
@@ -533,8 +545,6 @@ public class Table extends JFrame implements ActionListener {
 		addedCards.addElement(card);
 		player.addCard(card);
 
-		printCards();
-		// System.out.println("\tADDED: " + card.toString().toUpperCase());
 	}
 
 
@@ -549,7 +559,7 @@ public class Table extends JFrame implements ActionListener {
 		
 		if (cards.isEmpty()) return;
 
-		if (cards.size() > 3 && cards.size() < 5){
+		if (cards.size() > 2 && cards.size() < 5){
 
 			boolean valid = true;
 			Card card = cards.get(0);
@@ -578,7 +588,6 @@ public class Table extends JFrame implements ActionListener {
 			player.removeCard(card);
 		}
 
-		printCards();
 
 		if (player.isEmpty()) Gameover();
 	}
@@ -594,7 +603,6 @@ public class Table extends JFrame implements ActionListener {
 		player.removeCard(0);
 		layCard(card);
 		discardedCards.addElement(card);
-		// printCards();
 	}
 
 
@@ -623,15 +631,11 @@ public class Table extends JFrame implements ActionListener {
 			}
 		}
 
-		printCards();
-
 	}
 
 	// Lay on Stack for Virtual Player(s)
 	// Given a hand (i.e p2Hand), lays down a card to the stack deck.
 	private void ActionLayOnStackVP(Hand player){
-
-		// ChangePlayerTurn();
 
 		if (player.getNumberOfCards() == 0) Gameover();
 
@@ -640,7 +644,6 @@ public class Table extends JFrame implements ActionListener {
 		stackDeck.addCard(card);
 		topOfStack.setIcon(card.getCardImage());
 		discardedCards.addElement(card);
-		// printCards();
 	}
 
 
@@ -731,15 +734,24 @@ public class Table extends JFrame implements ActionListener {
 
 			if (src == p1Deck && p1Hand.getNumberOfCards() < 10 ){
 
-				if (addedCards.size() > 1){ 
+				if (addedCards.size() > 0){
 					System.out.println("YOU'VE ALREADY PICKED A CARD!");
+					p1Deck.setEnabled(false);
 				} else {
 					ActionDrawFromDeck(p1Hand);
+					enableP1();
 				}
 			}
 
 			if (src == p2Deck && p2Hand.getNumberOfCards() < 10 ){
-				ActionDrawFromDeck(p2Hand);
+
+				if (addedCards.size() > 0){
+					System.out.println("YOU'VE ALREADY PICKED A CARD!");
+					p2Deck.setEnabled(false);
+				} else {
+					ActionDrawFromDeck(p2Hand);
+					enableP2();
+				}
 			}
 		}
 
@@ -783,16 +795,31 @@ public class Table extends JFrame implements ActionListener {
 
 		if (p1FinishTurn == src || p2FinishTurn == src) {
 
+			printCards();
+
+			if (p1FinishTurn == src){
+				disableP1();
+				p2Deck.setEnabled(true);
+			}
+			if (p2FinishTurn == src){
+				disableP2();
+				p1Deck.setEnabled(true);
+			}
+
 
 			if (VirtualPlayers == 1){
 				// System.out.println("VT");
-				ChangePlayerTurn();
+				PrintPlayerTurn();
 				Virtualized(p2Hand);
 				printCards();
-				ChangePlayerTurn();
+				disableP1();
+				p2Deck.setEnabled(true);
+				PrintPlayerTurn();
 			} else {
 				// System.out.println("NVT");
-				ChangePlayerTurn();
+				PrintPlayerTurn();
+				// disableP1();
+				// enableP2();
 			}
 		} // EO
 

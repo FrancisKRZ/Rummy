@@ -8,7 +8,6 @@
 
 Documenting All Sources, Helped Received (if any) and Design Choices.
 
-
 The project is organized in two separate directories, Interfaces and Sources...
 
     How to compile & run:
