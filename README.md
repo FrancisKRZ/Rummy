@@ -27,6 +27,8 @@ The Virtual Players follow a basic algorithm:
 If the deck or hand is empty, it shall evaluate the hands,
 winner is chosen by player who's hand is lesser in rank value than the opponent's.
 
+	Extra Credits:
+		Play Melds
 
 
     Guides used:
